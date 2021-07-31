@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %} | {{ post.name }}{% endblock %}
+{% block main %}
+     <header class="masthead" style="background-image: url('{{ post.image.url }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading ">
+                            <h1>{{ post.name }}</h1>
+                            <h3 class="subheading">{{ post.subtitle }}</h3>
+                            <time>{{ post.jpublish }}</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    <article>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto text-justify">
+                        {{ post.body | linebreaks }}
+                            گردآوری توسط
+                            <a href="">{{ post.author }}</a>
+                            منتشر شده در تاریخ
+                            <small>{{ post.jpublish }}</small>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+{% endblock %}

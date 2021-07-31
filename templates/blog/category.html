@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+        {% block main %}
+
+             <header class="masthead" style="background-image: url({% static 'blog/assets/img/IMG_20180616_003349_664.jpg'%})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>ابیروگرام</h1>
+                            <span class="subheading">.به وبسایت چند منظوره من خوش اومدید</span>
+                            <span class="subheading">...فروشگاه اینترنتی، آپلود سنتر ویدیو و یه وبلاگ با کلی مقاله مفید</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                <h3 class="alert alert-primary text-center">  دسته بندی: {{ category.name }} </h3>
+                    <!-- Post preview-->
+                   {% for post in post %}
+                        <div class="post-preview">
+                        <a href="detail.html">
+                            <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h2>
+                            <h3 class="post-subtitle">{{ post.subtitle | truncatewords:20 }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            مقاله از
+                            <a href="">{{ post.author }}</a>
+                            {{ post.jpublish }}
+                        </p>
+
+                        <div>
+                            {% for categoris in post.category_published.all %}
+                                <a href="#">#{{ categoris.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+
+                    <!-- Divider-->
+
+                    <!-- Pager-->
+                 <div  class="clearfix pager-botton">
+                        {% if post.has_previous %}
+                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug post.previous_page_number %}" >پست های جدید تر</a>
+                        {% endif %}
+                        {% if post.has_next %}
+                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug post.next_page_number %}" >پست های قدیمی تر</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+

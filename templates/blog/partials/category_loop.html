@@ -1,0 +1,10 @@
+<ul class="navbar-nav ml-auto">
+    {% for categoris in categoris.child.active %}
+        <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:category' categoris.slug %}">{{ categoris.name }}</a>
+        {% if categoris.child.active %}
+                  {% include 'blog/partials/category_loop.html' %}
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>
