@@ -24,7 +24,7 @@
                     <!-- Post preview-->
                    {% for post in post %}
                         <div class="post-preview">
-                        <a href="detail.html">
+                        <a href="post_detail.html">
                             <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h2>
                             <h3 class="post-subtitle">{{ post.subtitle | truncatewords:20 }}</h3>
                         </a>
@@ -49,11 +49,11 @@
 
                     <!-- Pager-->
                  <div  class="clearfix pager-botton">
-                        {% if post.has_previous %}
-                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug post.previous_page_number %}" >پست های جدید تر</a>
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug page_obj.previous_page_number %}" >پست های جدید تر</a>
                         {% endif %}
-                        {% if post.has_next %}
-                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug post.next_page_number %}" >پست های قدیمی تر</a>
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary float-right ml-3" href="{% url 'blog:category' category.slug page_obj.next_page_number %}" >پست های قدیمی تر</a>
                         {% endif %}
                     </div>
                 </div>
